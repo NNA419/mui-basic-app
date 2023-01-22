@@ -9,7 +9,8 @@ function JobList({ data }) {
     const totalPages = Math.ceil((data.length) / 5);
 
  const handlerPageChange = (event, value) => {
-        setCurrentPage(value);
+     setCurrentPage(value);
+     setLimit(5);
  };
 
 return (
