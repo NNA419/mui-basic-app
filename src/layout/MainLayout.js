@@ -1,12 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { MyApp } from '../App';
-import AppBar from './MainHeader';
+import MainHeader from './MainHeader';
 
 function MainLayout() {
   return (
     <>
-      <AppBar />
+      <MainHeader />
       <MyApp />
       <Outlet />
     </>

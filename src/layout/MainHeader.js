@@ -6,8 +6,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { Container } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../hook/useAuth";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { useRef } from "react";
+import { useState } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -48,7 +53,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+
 function MainHeader() {
+  
+  const refSearch = useRef(null);
+  console.log(refSearch);
+  const auth = useAuth();
+  console.log(auth);
+
+  let navigative = useNavigate();
+
+  const hanldeSearch = async() => {
+   
+    if (refSearch.current.value) {
+      await navigative(`/?search=${refSearch.current.value?.trim()}`)
+    } else {
+      navigative("/");
+    }
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -69,15 +93,37 @@ function MainHeader() {
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
+
               <StyledInputBase
+                type="text"
+                inputRef={refSearch}
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
               />
+
             </Search>
+            <button onClick={hanldeSearch}>Search</button>
             <Box flexGrow={1}></Box>
-            <Box sx={{display:"flex" , flexDirection:"row", gap:1,}}>
-              <LoginIcon/>
-              <Typography>Login</Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                gap: 1,
+              }}
+            >
+              {auth.user ? (
+                <Button onClick={() => auth.Logout()} color="inherit">
+                  {" "}
+                  <LogoutIcon />
+                  Logout
+                </Button>
+              ) : (
+                <Button color="inherit" onClick={() => navigative("/login")}>
+                  {" "}
+                  <LoginIcon />
+                  Login
+                </Button>
+              )}
             </Box>
           </Toolbar>
         </Container>

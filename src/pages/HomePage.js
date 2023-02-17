@@ -1,11 +1,33 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import JobList from '../components/JobList';
-import Data from '../jobs.json';
-
+import jobsData from "../data.json";
 
 function HomePage() {
+
+  const [jobs, setJobs] = useState([]);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = jobsData.jobs
+
+        console.log(jobs);
+        setJobs(response);
+        // console.log(jobList1);
+      } catch (error) {
+        console.log(error)
+      }
+    };
+    fetchData();
+  },[])
+  
+  console.log("render jobs:" ,jobs);
+
   return (
-    <JobList data={Data} />
+    <JobList jobs={jobs} />
   )
 }
 

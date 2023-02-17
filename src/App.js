@@ -8,6 +8,8 @@ import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { CssBaseline } from '@mui/material';
+import Login from './pages/Login';
+import { AuthProvider } from './Context/AuthContext';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -67,16 +69,23 @@ function App() {
     );
 
     return (
-        <ColorModeContext.Provider value={colorMode}>
-                <ThemeProvider theme={theme}>
-                    <CssBaseline/>
-                    <Routes>
-                        <Route element={<MainLayout />}>
-                            <Route path='/' element={<HomePage/>}/>
-                        </Route>
-                    </Routes>
-                </ThemeProvider>
-        </ColorModeContext.Provider>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <AuthProvider>
+            <Routes>
+              <Route element={<MainLayout />}>
+                <Route index element={<HomePage />} />
+                <Route path="/login" element={<HomePage />} />
+              </Route>
+              {/* <Route path="/login" element={<Login />} /> */}
+            </Routes>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </AuthProvider>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
     );
 }
 

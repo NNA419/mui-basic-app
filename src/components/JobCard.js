@@ -29,7 +29,7 @@ function JobCard({ data }) {
             flexWrap: "wrap",
           }}
         >
-          {data.skills.slice(0, 4).map((skill) => (
+          {data.skills.slice(0, 4).map((skill , index) => (
             <Chip
               sx={{
                 maxWidth: "100%",
@@ -38,6 +38,7 @@ function JobCard({ data }) {
                 color: "white",
               }}
               label={skill}
+              key={index}
               variant="outlined"
             />
           ))}
