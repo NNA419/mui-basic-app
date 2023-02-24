@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../hook/useAuth";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useRef } from "react";
-import { useState } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -89,6 +88,7 @@ function MainHeader() {
             >
               Job Routing
             </Typography>
+            
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
@@ -102,7 +102,9 @@ function MainHeader() {
               />
 
             </Search>
+
             <button onClick={hanldeSearch}>Search</button>
+
             <Box flexGrow={1}></Box>
             <Box
               sx={{

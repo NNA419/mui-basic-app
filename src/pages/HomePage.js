@@ -1,6 +1,4 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import JobList from '../components/JobList';
 import jobsData from "../data.json";
 
