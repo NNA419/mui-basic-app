@@ -19,8 +19,6 @@ function reduce(state, action) {
     
 const AuthProvider = ({ children }) => {
 
-
-
     const [state, dispatch] = useReducer(reduce, initial)
     
     // console.log(state);
@@ -37,7 +35,7 @@ const AuthProvider = ({ children }) => {
 
     return (
     <AuthContext.Provider value={{ ...state, Login , Logout }}>
-        {children}    
+        {children}   
     </AuthContext.Provider> );
 }
 

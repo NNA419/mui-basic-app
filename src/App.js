@@ -10,6 +10,8 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { CssBaseline } from '@mui/material';
 import Login from './pages/Login';
 import { AuthProvider } from './Context/AuthContext';
+// import DetailPage from './pages/DetailPage';
+import RequireAuth from './hook/RequireAuth';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -77,11 +79,13 @@ function App() {
               <Route element={<MainLayout />}>
                 <Route index element={<HomePage />} />
                 <Route path="/login" element={<HomePage />} />
+                {/* <Route path="/detailPage/:dataId" element={<HomePage />} /> */}
               </Route>
               {/* <Route path="/login" element={<Login />} /> */}
             </Routes>
             <Routes>
               <Route path="/login" element={<Login />} />
+              <Route path="/detailPage/:dataId" element={<RequireAuth />} />
             </Routes>
           </AuthProvider>
         </ThemeProvider>
